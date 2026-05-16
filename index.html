@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ── Security Headers (OWASP A05: Security Misconfiguration) ── -->
+  <!--
+    NOTE: HTTP response headers (X-Frame-Options, X-Content-Type-Options,
+    Strict-Transport-Security) should be set at the server/CDN level.
+    The CSP below works from a <meta> tag and covers script/style injection.
+  -->
+  <meta http-equiv="Content-Security-Policy"
+    content="
+      default-src 'none';
+      style-src   'self' https://fonts.googleapis.com;
+      font-src    https://fonts.gstatic.com;
+      img-src     'self' data:;
+      script-src  'self';
+      connect-src 'none';
+      frame-src   'none';
+      object-src  'none';
+      base-uri    'self';
+      form-action 'none';
+    ">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- ── SEO ── -->
+  <title>[YOUR_NAME] — Webエンジニア / セキュリティ / アーティスト</title>
+  <meta name="description"
+    content="AI黎明期から活動するWebエンジニア・セキュリティリサーチャー・アーティストのポートフォリオ。Build. Secure. Keep moving.">
+
+  <!-- ── OGP (replace [YOUR_DOMAIN] with your actual domain) ── -->
+  <meta property="og:title"             content="[YOUR_NAME] — Creator Portfolio">
+  <meta property="og:description"       content="Here since the beginning. Web Engineer / Security / Artist / AI Explorer.">
+  <meta property="og:type"              content="website">
+  <meta property="og:url"              content="https://[YOUR_DOMAIN]/portfolio/">
+  <meta property="og:image"            content="https://[YOUR_DOMAIN]/assets/ogp.png">
+  <meta property="og:locale"           content="ja_JP">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name"        content="[YOUR_NAME]">
+
+  <!-- ── Twitter / X Card ── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@[YOUR_X_HANDLE]">
+  <meta name="twitter:title"       content="[YOUR_NAME] — Creator Portfolio">
+  <meta name="twitter:description" content="Here since the beginning.">
+  <meta name="twitter:image"       content="https://[YOUR_DOMAIN]/assets/ogp.png">
+
+  <!-- ── Favicon ── -->
+  <link rel="icon" type="image/svg+xml" href="assets/avatar.svg">
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a href="#hero" class="logo" aria-label="[YOUR_NAME] ホームへ">[YOUR_NAME]</a>
+
+    <nav class="nav-links" aria-label="ページ内ナビゲーション">
+      <a href="#about"    class="nav-link">
+        <span class="lang-ja">About</span>
+        <span class="lang-en" hidden>About</span>
+      </a>
+      <a href="#skills"   class="nav-link">
+        <span class="lang-ja">スキル</span>
+        <span class="lang-en" hidden>Skills</span>
+      </a>
+      <a href="#works"    class="nav-link">
+        <span class="lang-ja">制作物</span>
+        <span class="lang-en" hidden>Works</span>
+      </a>
+      <a href="#security" class="nav-link">
+        <span class="lang-ja">セキュリティ</span>
+        <span class="lang-en" hidden>Security</span>
+      </a>
+      <a href="#timeline" class="nav-link">
+        <span class="lang-ja">活動記録</span>
+        <span class="lang-en" hidden>Timeline</span>
+      </a>
+      <a href="#contact"  class="nav-link">
+        <span class="lang-ja">連絡先</span>
+        <span class="lang-en" hidden>Contact</span>
+      </a>
+    </nav>
+
+    <div class="header-controls">
+      <button id="lang-toggle"  class="ctrl-btn" aria-label="言語切替" title="Switch language">EN</button>
+      <button id="theme-toggle" class="ctrl-btn" aria-label="テーマ切替" title="Toggle theme">◐</button>
+      <button id="nav-hamburger" class="nav-hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  <nav>
+    <a href="#about"    class="mobile-nav-link">
+      <span class="lang-ja">About</span>
+      <span class="lang-en" hidden>About</span>
+    </a>
+    <a href="#skills"   class="mobile-nav-link">
+      <span class="lang-ja">スキル</span>
+      <span class="lang-en" hidden>Skills</span>
+    </a>
+    <a href="#works"    class="mobile-nav-link">
+      <span class="lang-ja">制作物</span>
+      <span class="lang-en" hidden>Works</span>
+    </a>
+    <a href="#security" class="mobile-nav-link">
+      <span class="lang-ja">セキュリティ</span>
+      <span class="lang-en" hidden>Security</span>
+    </a>
+    <a href="#timeline" class="mobile-nav-link">
+      <span class="lang-ja">活動記録</span>
+      <span class="lang-en" hidden>Timeline</span>
+    </a>
+    <a href="#contact"  class="mobile-nav-link">
+      <span class="lang-ja">連絡先</span>
+      <span class="lang-en" hidden>Contact</span>
+    </a>
+  </nav>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════════════════════════════
+     1. HERO
+════════════════════════════════════════════════════════════ -->
+<section id="hero" class="section-hero">
+  <div class="container hero-inner">
+
+    <!-- Avatar — replace /assets/avatar.png with your image -->
+    <div class="hero-avatar">
+      <!-- Replace avatar.svg (or avatar.png) with your actual photo -->
+      <img src="assets/avatar.svg"
+           alt="[YOUR_NAME]のアバター"
+           width="120" height="120"
+           loading="eager">
+      <!-- Shown if image fails to load (JS-controlled) -->
+      <div class="avatar-fallback" aria-hidden="true">[Y]</div>
+    </div>
+
+    <div class="hero-text">
+      <p class="hero-tag lang-ja">— Web Engineer / Security / Artist / AI Explorer</p>
+      <p class="hero-tag lang-en" hidden>— Web Engineer / Security / Artist / AI Explorer</p>
+
+      <!-- Japanese catchphrase (edit in place) -->
+      <h1 class="hero-headline lang-ja">黎明期から、<br>ここにいる。</h1>
+      <!-- English catchphrase -->
+      <h1 class="hero-headline lang-en" hidden>Here since<br>the beginning.</h1>
+
+      <p class="hero-sub lang-ja">Webエンジニア / セキュリティ / アーティスト / AI探求者</p>
+      <p class="hero-sub lang-en" hidden>Web Engineer / Security / Artist / AI Explorer</p>
+
+      <div class="hero-cta">
+        <a href="#works" class="btn btn-primary">
+          <span class="lang-ja">制作物を見る</span>
+          <span class="lang-en" hidden>View My Work</span>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <span class="lang-ja">連絡する</span>
+          <span class="lang-en" hidden>Get in Touch</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="lang-ja">scroll</span>
+    <span class="lang-en" hidden>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     2. ABOUT
+════════════════════════════════════════════════════════════ -->
+<section id="about" class="section fade-in">
+  <div class="container">
+
+    <h2 class="section-title lang-ja">About</h2>
+    <h2 class="section-title lang-en" hidden>About</h2>
+
+    <div class="about-grid">
+
+      <!-- Japanese text — edit paragraph content freely -->
+      <div class="about-text lang-ja">
+        <p>Webサービスを自分で作り、公開したとき、ふと気になった。「このサービス、攻撃されたらどうなるんだろう？」</p>
+        <p>ユーザーのデータを預かる責任を感じたことで、セキュリティを本格的に学び始めた。今はOWASP TOP10を軸に、自分のサービスに実際に適用しながら理解を深めている。</p>
+        <p>絵を描き、コードを書き、大阪から東京まで自転車で走った。今はAIと人間の関係を問うワークショップを大学で企画している。</p>
+        <p>AI黎明期のこの時代に、自分の活動を記録し続けることが、数年後の証明になると信じている。</p>
+      </div>
+
+      <!-- English text -->
+      <div class="about-text lang-en" hidden>
+        <p>When I launched my own web service, one thought hit me: "What if someone attacks this?"</p>
+        <p>That question pulled me into security. Now I study OWASP TOP10 and apply it directly to my own projects.</p>
+        <p>I draw, I code, and I once cycled from Osaka to Tokyo. I'm currently planning a workshop at my university exploring the relationship between AI and human existence.</p>
+        <p>I believe that documenting what I do now — in this early age of AI — will become proof of something meaningful later.</p>
+      </div>
+
+      <!-- Fact cards -->
+      <aside class="about-facts" aria-label="ハイライト">
+        <div class="fact-item fade-in">
+          <span class="fact-num lang-ja">大阪 → 東京</span>
+          <span class="fact-num lang-en" hidden>Osaka → Tokyo</span>
+          <span class="fact-label lang-ja">自転車で完走</span>
+          <span class="fact-label lang-en" hidden>Cycled the route</span>
+        </div>
+        <div class="fact-item fade-in">
+          <span class="fact-num">OWASP TOP10</span>
+          <span class="fact-label lang-ja">実践中</span>
+          <span class="fact-label lang-en" hidden>In Practice</span>
+        </div>
+        <div class="fact-item fade-in">
+          <span class="fact-num lang-ja">AI黎明期</span>
+          <span class="fact-num lang-en" hidden>AI Dawn Era</span>
+          <span class="fact-label lang-ja">から活動中</span>
+          <span class="fact-label lang-en" hidden>Active since early</span>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     3. SKILLS  (rendered by main.js from SKILLS data)
+════════════════════════════════════════════════════════════ -->
+<section id="skills" class="section fade-in">
+  <div class="container">
+
+    <h2 class="section-title lang-ja">スキル</h2>
+    <h2 class="section-title lang-en" hidden>Skills</h2>
+
+    <p class="section-desc lang-ja">正直さがブランドになる。学習中のものも一緒に載せています。</p>
+    <p class="section-desc lang-en" hidden>Honesty is part of the brand. Including things I'm still learning.</p>
+
+    <!-- Populated by renderSkills() in main.js -->
+    <div class="skills-grid" id="skills-grid"></div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     4. WORKS / PROJECTS
+════════════════════════════════════════════════════════════ -->
+<section id="works" class="section fade-in">
+  <div class="container">
+
+    <h2 class="section-title lang-ja">制作物</h2>
+    <h2 class="section-title lang-en" hidden>Works</h2>
+
+    <div class="works-grid">
+
+      <!-- ── Project 1: Your service ── -->
+      <article class="work-card fade-in">
+        <div class="work-card-header">
+          <div class="work-status status-active">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="lang-ja">運営中</span>
+            <span class="lang-en" hidden>Live</span>
+          </div>
+          <div class="work-links">
+            <!-- Replace href="#" with actual URLs when ready -->
+            <a href="#" class="work-link" rel="noopener noreferrer" aria-label="GitHubリポジトリ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="#" class="work-link" rel="noopener noreferrer" aria-label="サービスページ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Edit service name and description below -->
+        <h3 class="work-title">[YOUR_SERVICE_NAME]</h3>
+
+        <p class="work-desc lang-ja">[YOUR_SERVICE_DESCRIPTION]</p>
+        <p class="work-desc lang-en" hidden>[YOUR_SERVICE_DESCRIPTION_EN]</p>
+
+        <div class="work-tags">
+          <span class="tag">HTML / CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+          <span class="tag security">OWASP TOP10</span>
+        </div>
+      </article>
+
+      <!-- ── Project 2: AI Workshop ── -->
+      <article class="work-card fade-in">
+        <div class="work-card-header">
+          <div class="work-status status-planned">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="lang-ja">企画中</span>
+            <span class="lang-en" hidden>Coming Soon</span>
+          </div>
+          <div class="work-links"><!-- No links yet --></div>
+        </div>
+
+        <h3 class="work-title lang-ja">AI × 人間 ワークショップ</h3>
+        <h3 class="work-title lang-en" hidden>AI × Human Workshop</h3>
+
+        <p class="work-desc lang-ja">AIと人間の実存をテーマにした大学ワークショップ。「AI黎明期に生きる私たちは何者なのか」を問う場をつくる。</p>
+        <p class="work-desc lang-en" hidden>A university workshop on AI and human existence. Creating a space to ask: "Who are we, living in the early age of AI?"</p>
+
+        <div class="work-tags">
+          <span class="tag lang-ja">ワークショップ設計</span>
+          <span class="tag lang-en" hidden>Workshop Design</span>
+          <span class="tag lang-ja">AI × 哲学</span>
+          <span class="tag lang-en" hidden>AI × Philosophy</span>
+          <span class="tag lang-ja">大学</span>
+          <span class="tag lang-en" hidden>University</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     5. SECURITY — OWASP TOP10  (rendered by main.js)
+════════════════════════════════════════════════════════════ -->
+<section id="security" class="section fade-in">
+  <div class="container">
+
+    <h2 class="section-title lang-ja">セキュリティへの取り組み</h2>
+    <h2 class="section-title lang-en" hidden>Security Practice</h2>
+
+    <p class="section-desc lang-ja">OWASP TOP10 (2021) を参照し、自分のサービスへの適用状況をまとめています。</p>
+    <p class="section-desc lang-en" hidden>Tracking my OWASP TOP10 (2021) implementation across my own projects.</p>
+
+    <!-- Populated by renderOwasp() in main.js — edit OWASP_DATA in main.js -->
+    <div class="owasp-grid" id="owasp-grid"></div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     6. TIMELINE  (rendered by main.js from TIMELINE data)
+════════════════════════════════════════════════════════════ -->
+<section id="timeline" class="section fade-in">
+  <div class="container">
+
+    <h2 class="section-title lang-ja">活動記録</h2>
+    <h2 class="section-title lang-en" hidden>Timeline</h2>
+
+    <p class="section-desc lang-ja">AI黎明期の記録。新しい活動は main.js の TIMELINE 配列に追記するだけ。</p>
+    <p class="section-desc lang-en" hidden>A record from the AI dawn. Add new entries to the TIMELINE array in main.js.</p>
+
+    <!-- Populated by renderTimeline() in main.js -->
+    <div class="timeline" id="timeline-list"></div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     7. CONTACT  (email rendered by main.js to deter scrapers)
+════════════════════════════════════════════════════════════ -->
+<section id="contact" class="section fade-in">
+  <div class="container">
+
+    <h2 class="section-title lang-ja">連絡先</h2>
+    <h2 class="section-title lang-en" hidden>Contact</h2>
+
+    <p class="section-desc lang-ja">お気軽にどうぞ。SNSからでもメールからでも。</p>
+    <p class="section-desc lang-en" hidden>Feel free to reach out via social media or email.</p>
+
+    <!-- Populated by renderContact() in main.js -->
+    <div class="contact-links" id="contact-links"></div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© 2026 [YOUR_NAME] — All rights reserved</p>
+    <p class="footer-note lang-ja">AI黎明期の記録</p>
+    <p class="footer-note lang-en" hidden>A record from the AI dawn</p>
+  </div>
+</footer>
+
+<!-- main.js loaded last so all DOM elements exist when it runs -->
+<script src="main.js"></script>
+</body>
+</html>
